@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!-- Dichiarazione del tipo di documento: indica al browser di interpretare
+     la pagina secondo lo standard HTML5 (modalità standards e non quirks). -->
+<html lang="it">
+<!-- L'attributo lang="it" dichiara la lingua del contenuto: serve ai motori di
+     ricerca e, soprattutto, agli screen reader per usare la pronuncia corretta. -->
+<head>
+  <!-- charset UTF-8: consente di scrivere accenti e apostrofi italiani senza
+       ricorrere alle entità HTML. Va dichiarato tra i primi elementi del head. -->
+  <meta charset="UTF-8">
+  <!-- viewport: indica al browser mobile di usare la larghezza reale del
+       dispositivo e un fattore di zoom iniziale pari a 1. Senza questa riga le
+       media query del foglio di stile non produrrebbero alcun effetto su
+       smartphone, perché il browser simulerebbe uno schermo desktop. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Titolo mostrato nella scheda del browser e usato dai motori di ricerca. -->
+  <title>Eni | Sostenibilità e report</title>
+  <!-- Collegamento al foglio di stile esterno: la separazione tra contenuto
+       (HTML) e presentazione (CSS) rende il codice più leggibile e permette di
+       modificare l'aspetto della pagina senza toccare la struttura. -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==================================================================
+       INTESTAZIONE: barra di navigazione + sezione di apertura (hero)
+       <header> è un elemento semantico: comunica a browser e tecnologie
+       assistive che questo blocco è l'intestazione della pagina.
+       ================================================================== -->
+  <header class="site-header">
+
+    <!-- <nav> racchiude la navigazione principale. L'attributo aria-label le
+         assegna un nome leggibile dagli screen reader, utili quando l'utente
+         naviga saltando da un punto di riferimento all'altro. -->
+    <nav class="nav" aria-label="Navigazione principale">
+      <a class="brand" href="#top">Eni for 2025</a>
+      <!-- Collegamenti interni: l'href che inizia con # punta all'id di una
+           sezione della stessa pagina. Lo scorrimento animato è gestito dal
+           CSS con scroll-behavior: smooth, quindi senza JavaScript. -->
+      <div class="nav-links">
+        <a href="#contesto">Contesto</a>
+        <a href="#attivita">Attività</a>
+        <a href="#report">Report</a>
+      </div>
+    </nav>
+
+    <!-- Sezione di apertura: presenta l'argomento della pagina e indirizza
+         subito l'utente verso l'area dei report tramite un pulsante. -->
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <!-- .eyebrow è la breve etichetta in maiuscolo sopra il titolo: serve a
+             contestualizzare il blocco senza occupare un livello di titolo. -->
+        <p class="eyebrow">Project work universitario</p>
+        <!-- Unico <h1> della pagina: la gerarchia dei titoli (h1 > h2 > h3) va
+             rispettata perché costituisce l'indice con cui gli screen reader
+             permettono di esplorare il documento. -->
+        <h1>Energia, risorse naturali e transizione sostenibile</h1>
+        <p>
+          Una pagina informativa dedicata a Eni, impresa attiva anche
+          nell'estrazione di petrolio e gas naturale, attività che rientra nel
+          settore primario secondo la classificazione economica tradizionale.
+        </p>
+        <!-- Il "pulsante" è in realtà un collegamento: l'azione è una
+             navigazione, quindi <a> è l'elemento semanticamente corretto. -->
+        <a class="button" href="#report">Vai ai report</a>
+      </div>
+      <!-- L'attributo alt descrive l'immagine a chi non può vederla ed è
+           mostrato anche in caso di mancato caricamento del file.
+           L'immagine (fotografia Unsplash, licenza libera) è salvata nella
+           cartella del progetto e richiamata con un percorso relativo: la
+           pagina non effettua così alcuna richiesta verso domini esterni. -->
+      <img
+        class="hero-image"
+        src="images/hero.jpg"
+        alt="Tralicci di una linea elettrica ad alta tensione al tramonto">
+    </section>
+  </header>
+
+  <!-- <main> racchiude il contenuto principale, quello che distingue questa
+       pagina dalle altre del sito. Ne esiste uno solo per documento. -->
+  <main>
+
+    <!-- ==================================================================
+         SEZIONE 1 - CONTESTO
+         Spiega perché Eni è un caso pertinente rispetto al settore primario.
+         L'id="contesto" è il bersaglio del collegamento presente nel menu.
+         ================================================================== -->
+    <section class="section" id="contesto">
+      <div class="section-heading">
+        <p class="eyebrow">Il contesto</p>
+        <h2>Un'impresa energetica dentro il settore primario</h2>
+      </div>
+      <!-- .text-grid dispone i due paragrafi su due colonne affiancate da
+           desktop e in colonna singola sotto gli 840 pixel di larghezza. -->
+      <div class="text-grid">
+        <p>
+          Eni è una grande impresa italiana dell'energia. La sua attività
+          comprende l'esplorazione e l'estrazione di idrocarburi, cioè petrolio
+          e gas naturale, ma anche raffinazione, chimica, biocarburanti, energie
+          rinnovabili e servizi legati alla transizione energetica.
+        </p>
+        <p>
+          Il collegamento con il settore primario nasce proprio dall'attività
+          estrattiva: l'impresa utilizza risorse naturali del sottosuolo per
+          ottenere materie prime energetiche. Per questo il caso è adatto a
+          ragionare sul rapporto tra risorse naturali, impatto ambientale,
+          sicurezza energetica e sostenibilità.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         SEZIONE 2 - ATTIVITÀ DI SOSTENIBILITÀ
+         I quattro assi dichiarati dall'impresa, presentati come schede per
+         favorire la lettura rapida. La classe "muted" applica lo sfondo
+         chiaro a tutta larghezza, così da separare visivamente la sezione.
+         ================================================================== -->
+    <section class="section muted" id="attivita">
+      <div class="section-heading">
+        <p class="eyebrow">Azioni principali</p>
+        <h2>Come Eni racconta il proprio percorso di sostenibilità</h2>
+      </div>
+      <!-- Ogni scheda è un <article>: rappresenta un contenuto autonomo,
+           comprensibile anche se estratto dal suo contesto. -->
+      <div class="cards">
+        <article class="card">
+          <h3>Decarbonizzazione</h3>
+          <p>Riduzione progressiva delle emissioni e obiettivo di neutralità carbonica al 2050.</p>
+        </article>
+        <article class="card">
+          <h3>Ambiente</h3>
+          <p>Gestione di biodiversità, acqua, suolo, aria e attività di bonifica ambientale.</p>
+        </article>
+        <article class="card">
+          <h3>Persone</h3>
+          <p>Salute, sicurezza, diritti umani e attenzione alle comunità nei territori di presenza.</p>
+        </article>
+        <article class="card">
+          <h3>Filiera</h3>
+          <p>Integrazione della sostenibilità nella catena del valore e nei rapporti con i fornitori.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         SEZIONE 3 - INDICATORI SINTETICI
+         Tre soli dati in evidenza tipografica: servono a fissare gli elementi
+         chiave prima di rimandare l'utente ai documenti completi.
+         ================================================================== -->
+    <section class="section">
+      <!-- aria-label assegna un nome a questo gruppo di dati, che altrimenti
+           risulterebbe una sequenza di numeri priva di contesto per chi usa
+           uno screen reader. -->
+      <div class="metrics" aria-label="Indicatori aziendali e ambientali">
+        <div>
+          <span>2050</span>
+          <p>orizzonte dichiarato per la neutralità carbonica</p>
+        </div>
+        <div>
+          <span>62</span>
+          <p>Paesi in cui Eni dichiara di operare</p>
+        </div>
+        <div>
+          <span>2025</span>
+          <p>anno dell'ultimo report di sostenibilità disponibile</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         SEZIONE 4 - DOWNLOAD DEI REPORT
+         È la funzione richiesta dalla traccia: consentire all'utente di
+         scaricare i report di sostenibilità dell'impresa.
+
+         Nota progettuale: i collegamenti puntano ai file pubblicati sul sito
+         ufficiale di Eni anziché a copie ospitate localmente, così che
+         l'utente ottenga sempre la versione autentica e aggiornata. Per
+         questo motivo non è stato usato l'attributo HTML "download", che i
+         browser ignorano quando il file risiede su un dominio diverso da
+         quello della pagina: l'etichetta del collegamento rende quindi
+         esplicito il formato e la natura del documento scaricabile.
+
+         target="_blank" apre il documento in una nuova scheda, lasciando
+         disponibile la pagina informativa; rel="noopener" impedisce alla
+         pagina di destinazione di accedere all'oggetto window.opener, una
+         precauzione di sicurezza contro il cosiddetto tabnabbing.
+         ================================================================== -->
+    <section class="section" id="report">
+      <div class="section-heading">
+        <p class="eyebrow">Download</p>
+        <h2>Report e documenti scaricabili</h2>
+      </div>
+      <div class="download-list">
+        <a class="download-card" href="https://www.eni.com/content/dam/enicom/documents/eng/reports/2025/ar-2025/Annual-Report-2025.pdf" target="_blank" rel="noopener">
+          <strong>Scarica l'Annual Report 2025 (PDF)</strong>
+          <span>Contiene la Sustainability Statement 2025</span>
+        </a>
+        <a class="download-card" href="https://www.eni.com/content/dam/enicom/documents/eng/sustainability/2025/eni-for-2025-just-transition-eng.pdf" target="_blank" rel="noopener">
+          <strong>Scarica Eni for 2025 (PDF)</strong>
+          <span>Report volontario sulla Just Transition</span>
+        </a>
+        <a class="download-card" href="https://www.eni.com/en-IT/sustainability.html" target="_blank" rel="noopener">
+          <strong>Vai alla pagina Sustainability</strong>
+          <span>Archivio completo dei documenti ufficiali</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Piè di pagina: dichiara la finalità didattica del lavoro e le fonti
+       utilizzate, requisito di trasparenza verso il lettore. -->
+  <footer class="footer">
+    <p>Pagina dimostrativa realizzata per finalità didattiche.</p>
+    <p>Fonti: Eni Sustainability, Annual Report 2025, Eni for 2025 e immagine Unsplash.</p>
+  </footer>
+</body>
+</html>

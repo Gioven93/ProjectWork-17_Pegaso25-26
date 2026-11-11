@@ -1,0 +1,375 @@
+/* ============================================================
+   FOGLIO DI STILE - Pagina informativa sulla sostenibilità Eni
+   Organizzazione del file:
+   1. Variabili di colore
+   2. Impostazioni generali del documento
+   3. Intestazione e navigazione
+   4. Sezione di apertura (hero)
+   5. Elementi ricorrenti (etichette, pulsanti)
+   6. Sezioni di contenuto
+   7. Schede, indicatori e area download
+   8. Piè di pagina
+   9. Adattamento ai dispositivi mobili (media query)
+   ============================================================ */
+
+
+/* --- 1. VARIABILI DI COLORE ---------------------------------
+   Le custom properties sono dichiarate su :root, cioè sull'elemento
+   <html>, e per ereditarietà risultano disponibili in tutto il
+   documento. Centralizzare qui i colori significa poter ridefinire
+   l'intera identità visiva modificando sette righe, senza intervenire
+   sulle singole regole. */
+:root {
+  --ink: #1d1d1f;    /* testo principale */
+  --muted: #5f6368;  /* testo secondario, meno contrastato */
+  --paper: #ffffff;  /* sfondo di base */
+  --wash: #f5f7f4;   /* sfondo alternativo delle fasce */
+  --line: #dfe6de;   /* colore dei bordi */
+  --green: #285f4b;  /* colore istituzionale, richiama il tema ambientale */
+  --amber: #d8a600;  /* accento usato per i dati numerici */
+}
+
+
+/* --- 2. IMPOSTAZIONI GENERALI ------------------------------- */
+
+/* box-sizing: border-box fa sì che padding e bordi siano compresi
+   nella larghezza dichiarata di un elemento. Senza questa regola una
+   scheda larga 300px con 22px di padding occuperebbe in realtà 344px,
+   mandando fuori misura le griglie. */
+* {
+  box-sizing: border-box;
+}
+
+/* Scorrimento animato per i collegamenti interni della navigazione:
+   ottenuto in CSS, quindi senza ricorrere a JavaScript. */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;                                    /* azzera il margine predefinito del browser */
+  font-family: Arial, Helvetica, sans-serif;    /* font di sistema: nessuna richiesta di rete esterna */
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;                             /* interlinea ampia, migliora la leggibilità dei testi lunghi */
+}
+
+/* I collegamenti ereditano il colore del testo circostante e non sono
+   sottolineati: la loro riconoscibilità è affidata al contesto grafico
+   (pulsanti e schede). */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* --- 3. INTESTAZIONE E NAVIGAZIONE -------------------------- */
+
+.site-header {
+  background: var(--wash);
+}
+
+/* La navigazione usa Flexbox perché dispone pochi elementi su una sola
+   riga: il marchio a sinistra e i collegamenti a destra, separati da
+   justify-content: space-between. */
+.nav {
+  width: min(1120px, calc(100% - 32px)); /* larghezza massima di lettura, con margini laterali su schermi stretti */
+  margin: 0 auto;                        /* centra il blocco orizzontalmente */
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Riscontro visivo al passaggio del mouse: il collegamento passa dal
+   grigio al colore del testo principale. */
+.nav-links a:hover {
+  color: var(--ink);
+}
+
+
+/* --- 4. SEZIONE DI APERTURA (HERO) -------------------------- */
+
+/* Due colonne di larghezza quasi identica: testo a sinistra, immagine a
+   destra. align-items: center allinea verticalmente i due blocchi. */
+.hero {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: 1fr 0.95fr;
+  gap: 48px;
+  align-items: center;
+  padding: 56px 0 72px;
+}
+
+/* clamp(minimo, valore preferito, massimo) rende la dimensione del
+   titolo fluida: cresce con la larghezza della finestra (6vw) ma non
+   scende sotto 2.4rem né supera 5.8rem. Evita di dover scrivere una
+   media query dedicata alla tipografia. */
+.hero-copy h1 {
+  margin: 0;
+  max-width: 720px;
+  font-size: clamp(2.4rem, 6vw, 5.8rem);
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+.hero-copy p {
+  max-width: 620px;
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+/* object-fit: cover ritaglia l'immagine per riempire il riquadro senza
+   deformarla, mantenendo il rapporto d'aspetto dichiarato. */
+.hero-image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 24px 60px rgba(29, 29, 31, 0.16);
+}
+
+
+/* --- 5. ELEMENTI RICORRENTI --------------------------------- */
+
+/* Etichetta breve in maiuscolo posta sopra i titoli di sezione. */
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--green);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+/* Pulsante di richiamo. L'altezza minima di 44px corrisponde all'area
+   di tocco raccomandata dalle linee guida di accessibilità per l'uso
+   da dispositivo mobile. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: 14px;
+  padding: 0 18px;
+  border-radius: 8px;
+  background: var(--green);
+  color: #fff;
+  font-weight: 700;
+}
+
+.button:hover {
+  background: #214e3f;
+}
+
+
+/* --- 6. SEZIONI DI CONTENUTO -------------------------------- */
+
+.section {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 78px 0;
+}
+
+/* Variante con sfondo colorato esteso a tutta la larghezza della
+   finestra: il contenuto resta però allineato alle altre sezioni
+   grazie al padding calcolato, che replica i margini laterali. */
+.section.muted {
+  width: 100%;
+  padding-inline: max(16px, calc((100% - 1120px) / 2));
+  background: var(--wash);
+}
+
+.section-heading {
+  max-width: 680px;
+  margin-bottom: 28px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+/* Testo su due colonne. minmax(0, 1fr) evita che un contenuto lungo,
+   ad esempio un URL, allarghi la colonna oltre lo spazio disponibile:
+   il minimo 0 consente alla colonna di restringersi. */
+.text-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  color: var(--muted);
+}
+
+
+/* --- 7. SCHEDE, INDICATORI E AREA DOWNLOAD ------------------ */
+
+/* Quattro schede affiancate di uguale larghezza. */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* L'altezza minima uniforma visivamente le schede anche quando i testi
+   hanno lunghezza diversa. */
+.card {
+  min-height: 180px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.card h3 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Fascia dei tre indicatori sintetici, delimitata sopra e sotto da una
+   linea sottile ottenuta con la proprietà abbreviata border-block. */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  border-block: 1px solid var(--line);
+  padding: 28px 0;
+}
+
+.metrics div {
+  padding-right: 22px;
+}
+
+/* display: block trasforma lo <span> in elemento di blocco, così il
+   testo descrittivo si dispone sotto il numero anziché di fianco. */
+.metrics span {
+  display: block;
+  color: var(--amber);
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1;
+  font-weight: 700;
+}
+
+.metrics p {
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
+/* Tre schede di collegamento ai documenti scaricabili. */
+.download-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* Ogni scheda è un contenitore flessibile in colonna: il titolo resta
+   in alto e la descrizione in basso grazie a space-between, anche se i
+   testi hanno lunghezza diversa. */
+.download-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 150px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  /* La transizione riguarda solo transform e border-color: animare
+     queste due proprietà è poco costoso per il browser e non provoca
+     un nuovo calcolo del layout. */
+  transition: transform 160ms ease, border-color 160ms ease;
+}
+
+/* Al passaggio del mouse la scheda si solleva leggermente e assume il
+   bordo verde: è il riscontro visivo che segnala l'elemento cliccabile. */
+.download-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--green);
+}
+
+.download-card span {
+  margin-top: 16px;
+  color: var(--muted);
+}
+
+
+/* --- 8. PIÈ DI PAGINA --------------------------------------- */
+
+.footer {
+  padding: 28px 16px 40px;
+  text-align: center;
+  color: var(--muted);
+  background: var(--wash);
+  font-size: 0.92rem;
+}
+
+.footer p {
+  margin: 4px 0;
+}
+
+
+/* --- 9. ADATTAMENTO AI DISPOSITIVI MOBILI ------------------- */
+
+/* Unico punto di rottura del progetto, fissato a 840px. Al di sotto di
+   questa larghezza le griglie multi-colonna diventerebbero illeggibili,
+   quindi vengono tutte riportate a colonna singola. */
+@media (max-width: 840px) {
+
+  /* La navigazione passa da riga a colonna: marchio sopra, collegamenti
+     sotto, per evitare che gli elementi risultino compressi. */
+  .nav {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 18px 0;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+  }
+
+  .hero {
+    min-height: auto;              /* l'altezza fissa non ha senso su schermo stretto */
+    grid-template-columns: 1fr;    /* testo e immagine si impilano */
+    gap: 28px;
+    padding-top: 32px;
+  }
+
+  /* Su smartphone l'immagine verticale occuperebbe troppo spazio: il
+     rapporto d'aspetto diventa orizzontale. */
+  .hero-image {
+    aspect-ratio: 16 / 10;
+  }
+
+  /* Tutte le griglie della pagina passano a colonna singola. */
+  .text-grid,
+  .cards,
+  .metrics,
+  .download-list {
+    grid-template-columns: 1fr;
+  }
+
+  /* Spaziature verticali ridotte, per limitare lo scorrimento. */
+  .section {
+    padding: 56px 0;
+  }
+}
